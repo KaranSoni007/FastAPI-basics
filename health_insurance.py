@@ -7,16 +7,16 @@ app = FastAPI()
 class HealthInsurance(BaseModel):
     name: str
     age: int
-    income: int
-    insured_amount: int
+    income: float
+    insured_amount: float
 
 
 @app.post("/insurance")
 def insurance(application: HealthInsurance):
     approved = (
-        application.age > 50
-        and application.income < 10000
-        and application.insured_amount < 100000
+        18 <= application.age <= 65
+        and application.income >= 15000
+        and application.insured_amount <= 500000
     )
 
     return {
